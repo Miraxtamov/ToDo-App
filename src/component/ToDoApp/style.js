@@ -56,19 +56,19 @@ export const TodoListContainer = styled.div`
 export const TodoElemContainer = styled.div`
 	display: flex;
 	align-items: center;
-  margin-top: 12px; 
+	margin-top: 12px;
 `;
 
 export const CheckboxInput = styled.input`
-  font-size: 15px;
-`
+	font-size: 15px;
+	padding: 12px;
+`;
 
 export const TodoLi = styled.div`
 	width: 700px;
 	height: auto;
 	margin: 0 auto;
 	padding: 5px;
-	/* margin-top: 12px; */
 	background-color: rgba(70, 120, 214, 0.3);
 	border-radius: 5px;
 	border: 1px solid #5384dd;
