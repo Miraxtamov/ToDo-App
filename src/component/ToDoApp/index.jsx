@@ -8,6 +8,7 @@ import {
 	TodoElemContainer,
 	TodoLi,
 	TodoListContainer,
+	TodoRemoveBtn,
 } from "./style";
 
 const localData = localStorage.getItem("lists");
@@ -31,6 +32,11 @@ const ToDoApp = () => {
 		localStorage.setItem("lists", JSON.stringify(todos));
 	}, [todos]);
 
+	const clear = () => {
+		localStorage.clear();
+		setTodos([])
+	}
+
 	return (
 		<Container>
 			<Form>
@@ -38,10 +44,11 @@ const ToDoApp = () => {
 				<InputBtn onClick={handleSubmit}>Add</InputBtn>
 			</Form>
 			<TodoListContainer>
+				<TodoRemoveBtn onClick={clear}>Delete them all</TodoRemoveBtn>
 				{todos.map((value) => {
 					return (
 						<TodoElemContainer>
-							<CheckboxInput type="checkbox" />
+							<CheckboxInput key={value.id} type="checkbox" />
 							<TodoLi key={value.id}>{value.name}</TodoLi>
 						</TodoElemContainer>
 					);

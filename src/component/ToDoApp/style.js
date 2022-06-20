@@ -53,6 +53,24 @@ export const TodoListContainer = styled.div`
 	margin: 0 auto;
 `;
 
+export const TodoRemoveBtn = styled.button`
+	background-color: #5384dd;
+	padding: 12px;
+	cursor: pointer;
+	color: #ffffff;
+	font-size: 15px;
+	outline: none;
+	width: 50%;
+	border: 1px solid #5384dd;
+	margin: 0 auto;
+	margin-top: 24px;
+	margin-bottom: 36px;
+
+	&:hover {
+		background-color: #4678d6;
+	}
+`;
+
 export const TodoElemContainer = styled.div`
 	display: flex;
 	align-items: center;
