@@ -5,6 +5,8 @@ import {
 	Form,
 	Input,
 	InputBtn,
+	TodoDeleteBtn,
+	TodoEditBtn,
 	TodoElemContainer,
 	TodoLi,
 	TodoListContainer,
@@ -24,7 +26,13 @@ const ToDoApp = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		setTodos((prev) => [...prev, { id: Date.now(), name: name }]);
+		if (name === "") {
+			return alert("Please add something to-do");
+		}
+		setTodos((prev) => [
+			...prev,
+			{ id: Date.now(), name: name, checkbox: "checkbox" },
+		]);
 		setName("");
 	};
 
@@ -34,8 +42,15 @@ const ToDoApp = () => {
 
 	const clear = () => {
 		localStorage.clear();
-		setTodos([])
-	}
+		setTodos([]);
+	};
+
+	const getEditItem = () => {};
+
+	const getDeleteItem = (ids) => {
+		const newArr = todos.filter((value) => value.id !== ids);
+		setTodos(newArr);
+	};
 
 	return (
 		<Container>
@@ -47,9 +62,13 @@ const ToDoApp = () => {
 				<TodoRemoveBtn onClick={clear}>Delete them all</TodoRemoveBtn>
 				{todos.map((value) => {
 					return (
-						<TodoElemContainer>
-							<CheckboxInput key={value.id} type="checkbox" />
-							<TodoLi key={value.id}>{value.name}</TodoLi>
+						<TodoElemContainer key={value.id}>
+							<CheckboxInput type="checkbox" />
+							<TodoLi>{value.name}</TodoLi>
+							<TodoEditBtn onChange={getEditItem}>Edit</TodoEditBtn>
+							<TodoDeleteBtn onClick={() => getDeleteItem(value.id)}>
+								Delete
+							</TodoDeleteBtn>
 						</TodoElemContainer>
 					);
 				})}

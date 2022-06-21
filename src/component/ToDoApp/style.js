@@ -45,7 +45,7 @@ export const InputBtn = styled.button`
 `;
 
 export const TodoListContainer = styled.div`
-	width: 800px;
+	width: 850px;
 	height: auto;
 	display: flex;
 	flex-wrap: wrap;
@@ -90,4 +90,20 @@ export const TodoLi = styled.div`
 	background-color: rgba(70, 120, 214, 0.3);
 	border-radius: 5px;
 	border: 1px solid #5384dd;
+`;
+
+export const TodoEditBtn = styled.button`
+	padding: 5px;
+	background-color: #5384dd;
+	color: #ffffff;
+	cursor: pointer;
+	border-radius: 2px;
+	border: 1px solid #5384dd;
+`;
+
+export const TodoDeleteBtn = styled(TodoEditBtn)`
+	background-color: #ff4949;
+	border: 1px solid #ff4949;
+	color: #ffffff;
+	margin-left: 8px;
 `;
