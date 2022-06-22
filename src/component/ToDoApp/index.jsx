@@ -9,8 +9,10 @@ import {
 	TodoEditBtn,
 	TodoElemContainer,
 	TodoLi,
+	TodoLiInput,
 	TodoListContainer,
 	TodoRemoveBtn,
+	TodoSaveBtn,
 } from "./style";
 
 const localData = localStorage.getItem("lists");
@@ -18,7 +20,8 @@ const localData = localStorage.getItem("lists");
 const ToDoApp = () => {
 	const [name, setName] = useState("");
 	const [todos, setTodos] = useState(localData ? JSON.parse(localData) : []);
-	const [check, setCheck] = useState([]);
+	const [select, setSelect] = useState(null);
+	const [title, setTitle] = useState("");
 
 	const inputInfo = (e) => {
 		setName(e.target.value);
@@ -29,10 +32,7 @@ const ToDoApp = () => {
 		if (name === "") {
 			return alert("Please add something to-do");
 		}
-		setTodos((prev) => [
-			...prev,
-			{ id: Date.now(), name: name, checkbox: "checkbox" },
-		]);
+		setTodos((prev) => [...prev, { id: Date.now(), name: name }]);
 		setName("");
 	};
 
@@ -45,11 +45,22 @@ const ToDoApp = () => {
 		setTodos([]);
 	};
 
-	const getEditItem = () => {};
-
 	const getDeleteItem = (ids) => {
 		const newArr = todos.filter((value) => value.id !== ids);
 		setTodos(newArr);
+	};
+
+	const getEdit = (value) => {
+		setSelect(value.id);
+		setTitle(value.name);
+	};
+
+	const getEditSave = () => {
+		const newEditSaveData = todos.map((value) => {
+			return select === value.id ? { ...value, name: title } : value;
+		});
+		setTodos(newEditSaveData);
+		setSelect(null);
 	};
 
 	return (
@@ -64,8 +75,22 @@ const ToDoApp = () => {
 					return (
 						<TodoElemContainer key={value.id}>
 							<CheckboxInput type="checkbox" />
-							<TodoLi>{value.name}</TodoLi>
-							<TodoEditBtn onChange={getEditItem}>Edit</TodoEditBtn>
+							<TodoLi>
+								{select === value.id ? (
+									<TodoLiInput
+										onChange={(e) => setTitle(e.target.value)}
+										value={title}
+										type="text"
+									/>
+								) : (
+									value.name
+								)}
+							</TodoLi>
+							{select === value.id ? (
+								<TodoSaveBtn onClick={getEditSave}>Save</TodoSaveBtn>
+							) : (
+								<TodoEditBtn onClick={() => getEdit(value)}>Edit</TodoEditBtn>
+							)}
 							<TodoDeleteBtn onClick={() => getDeleteItem(value.id)}>
 								Delete
 							</TodoDeleteBtn>

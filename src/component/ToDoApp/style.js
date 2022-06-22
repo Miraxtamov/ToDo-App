@@ -78,8 +78,7 @@ export const TodoElemContainer = styled.div`
 `;
 
 export const CheckboxInput = styled.input`
-	font-size: 15px;
-	padding: 12px;
+	
 `;
 
 export const TodoLi = styled.div`
@@ -92,13 +91,31 @@ export const TodoLi = styled.div`
 	border: 1px solid #5384dd;
 `;
 
+export const TodoLiInput = styled.input`
+	width: 100%;
+	outline: none;
+	border: 1px solid #5384dd;
+	padding: 3px;
+`;
+
 export const TodoEditBtn = styled.button`
+	width: 50px;
 	padding: 5px;
 	background-color: #5384dd;
 	color: #ffffff;
 	cursor: pointer;
 	border-radius: 2px;
 	border: 1px solid #5384dd;
+`;
+
+export const TodoSaveBtn = styled.button`
+	width: 50px;
+	cursor: pointer;
+	border-radius: 2px;
+	padding: 5px;
+	background-color: #08a823;
+	color: #ffffff;
+	border: 1px solid #08a823;
 `;
 
 export const TodoDeleteBtn = styled(TodoEditBtn)`
